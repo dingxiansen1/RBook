@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="m"
+            type="com.dd.rbook.ui.search.SearchViewModel" />
+        <variable
+            name="a"
+            type="com.dd.rbook.ui.search.SearchActivity" />
+    </data>
+
+    <LinearLayout
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/search_toolbar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <RelativeLayout
+                        android:id="@+id/home_tab_toolbar_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp">
+
+                        <ImageView
+                            android:id="@+id/finsh"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            app:srcCompat="@drawable/icon_finsh"
+                            android:onClick="@{()->a.finish()}"
+                            app:tint="@color/black" />
+
+                        <RelativeLayout
+                            android:id="@+id/search_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_toLeftOf="@+id/activity_search_submit_tv"
+                            android:layout_toRightOf="@+id/finsh"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/search_input_edit_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_search_view"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true"
+                                android:hint="诡秘之主"
+                                android:imeOptions="actionSearch"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:paddingLeft="34dp"
+                                android:text="@={m.search}"
+                                android:textColor="@color/textSecond"
+                                android:textSize="14dp" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="8dp"
+                                android:src="@drawable/icon_search" />
+
+                            <ImageView
+                                android:id="@+id/search_input_clear_img"
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:onClick="@{()->m.clearOnClick()}"
+                                android:padding="8dp"
+                                android:visibility="gone"
+                                tools:visibility="visible"
+                                app:srcCompat="@drawable/close"
+                                app:tint="@color/black"/>
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/activity_search_submit_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center"
+                            android:onClick="@{()->m.searchOnClick()}"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:text="搜索"
+                            android:textColor="@color/black"
+                            android:textSize="14dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <RadioGroup
+                    android:id="@+id/rg_search_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_all_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:onClick="@{()->m.setSearchFilter(0)}"
+                        android:text="全部"
+                        android:textColor="@color/textPrimary" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_fuzzy_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:checked="true"
+                        android:onClick="@{()->m.setSearchFilter(1)}"
+                        android:text="模糊查找"
+                        android:textColor="@color/textPrimary" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rb_precise_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:onClick="@{()->m.setSearchFilter(2)}"
+                        android:text="精确查找"
+                        android:textColor="@color/textPrimary" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/search_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/search_img"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/icon_search"
+                            app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_toRightOf="@+id/search_img"
+                            android:text="大家都在搜"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                    <com.dd.baseui.flowLayout.SearchHistoryView
+                        android:id="@+id/searching_list"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:flow_equally="false"
+                        app:flow_horizontalSpacing="10dp"
+                        app:flow_verticalSpacing="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/search_history_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <RelativeLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                            <ImageView
+                                android:id="@+id/search_history_img"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/ic_search_history"
+                                app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/search_history_img"
+                            android:layout_marginStart="5dp"
+                            android:text="搜索历史"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/clear_search_history_img"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginEnd="10dp"
+                            android:onClick="@{()->a.clearSearchHistory()}"
+                            android:src="@drawable/icon_clear"
+                            app:tint="@color/black" />
+                    </RelativeLayout>
+                    <com.dd.baseui.flowLayout.SearchHistoryView
+                        android:id="@+id/search_history_list"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:flow_equally="false"
+                        app:flow_fold="true"
+                        app:flow_foldLines="2"
+                        app:flow_horizontalSpacing="10dp"
+                        app:flow_verticalSpacing="10dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/hot_search_img"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/icon_search"
+                            app:tint="@color/black" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_toRightOf="@+id/hot_search_img"
+                            android:text="热门搜索"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                    <com.dd.baseui.flowLayout.SearchHistoryView
+                        android:id="@+id/hot_search_list"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:flow_equally="false"
+                        app:flow_fold="true"
+                        app:flow_foldLines="2"
+                        app:flow_horizontalSpacing="10dp"
+                        app:flow_verticalSpacing="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,17 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "RBook"
+include ':app'
+include ':base'
+project(':base').projectDir = "../base/base" as File
+include ':baseui'
+project(':baseui').projectDir = "../base/baseui" as File
+include ':network'
+project(':network').projectDir = "../base/network" as File

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">读书</string>
+
+    <string name="skip_ad">跳过 | %ds</string>
+
+    <string name="privacy_tip">\n感谢您使用读书APP！
+        \n\n1.我们非常重视您的个人信息和隐私保护。为了更好地保障您的个人权益，在您使用我们的产品前，请务必审慎阅读《隐私政策》内的所有条款.
+        \n\n2.我们可能会申请存储权限，以实现下载、分享、备份、应用升级、导入本地书籍等相关功能.
+        \n\n如果您己阅读完毕并同意以上协议的全部内容，请点击下方“同意并继续”按钮以开始使用我们的产品和服务.</string>
+</resources>
